@@ -1,0 +1,60 @@
+h1{
+    color:aqua;
+    font-size: 72px;
+}
+
+ul{
+    color:red;
+    font-size: 60px;
+}
+
+a{
+    font-size: 24px;
+    color: rgb(251, 0, 255);
+}
+
+
+a:hover{
+    font-size: 36px;
+    text-decoration: underline;
+}
+
+a:active{
+    font-size: 24px;
+    color: black;
+}
+
+img{
+    width: 120px;
+    height: auto;
+}
+
+div{ 
+    width: 800px;
+}
+
+
+.style1{
+    font-family: Verdana, Geneva, Tahoma, sans-serif; /* 字體 verdana 是洧杰喜歡的 */
+    font-size: 16px; /* 通常網頁是設定16px、18px、20px 都有 */
+    line-height: 1.5; 
+    /* 這樣是設定1.5倍的意思，如果字體是16px的話就代表這一行24px，中間放16px的字 */
+    /* 可以設定倍數，也可以設定px，這邊的設定的話我打line-height: 24px; 會跟這行一樣意思 */
+    text-decoration: underline; /* 這是底線 */
+    /* text-decoration: line-through;   這是刪除線 */
+    letter-spacing: 2px; /* 字與字的間距、這個通常沒人在調，除非設計師有要求 */
+    text-indent: 32px; /* 首行縮排、在我設定字體是16px的情況下，我這邊打32px＝首排會縮排2個字的意思 */
+    text-align: center; /* 字體靠哪、預設是字體靠左、center置中 */
+}
+
+.border-left{
+    border-left: 3px solid blue;
+}
+
+.border-bottom{
+    border-bottom:3px dotted blue ;
+}
+
+.border-top{
+    border-top: 3px dashed blue;
+}
