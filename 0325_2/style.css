@@ -1,0 +1,212 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+h1 {
+  font-size: 48px;
+  color: red;
+}
+
+/* 區塊元素：會佔滿整行 */
+h1,
+p,
+li {
+  background-color: lightgray;
+  margin-bottom: 10px;
+}
+
+/* 行內元素：寬度隨文字長度變化 */
+a,
+span,
+img {
+  background-color: yellow;
+}
+
+.btn {
+  /* 核心轉換 */
+  display: block; /* 讓按鈕可以有設定寬高的能力 */
+
+  width: 100px;
+  height: 100px;
+
+  /* 尺寸與間距 */
+  padding: 20px 20px;
+  margin: 5px;
+
+  /* 置中關鍵 */
+  text-align: center; /* 水平置中 */
+  line-height: 100px; /* 垂直置中：行高設定與高度 (height) 一樣 */
+
+  /* 視覺樣式 */
+  background-color: #007bff;
+  color: white;
+  text-decoration: none; /* 移除超連結底線 */
+  border-radius: 4px; /* 圓角 */
+
+  /* 點擊手勢 */
+  cursor: pointer;
+}
+
+.btn2 {
+  display: inline-flex; /* 讓按鈕具備 Flex 容器特性且可並排 */
+  justify-content: center; /* 水平置中 */
+  align-items: center; /* 垂直置中 */
+
+  padding: 30px 20px; /* 靠間距撐開，不一定要寫死高度 */
+  background-color: #28a745;
+  color: white;
+}
+
+/* 滑鼠經過效果 */
+.btn:hover {
+  background-color: #0056b3;
+}
+
+.btn2:hover {
+  background-color: #7cef4a;
+}
+
+.btn3 {
+  background: #eba10d;
+  /* display: block; */
+  display: flex;
+  width: 200px;
+  height: 100px;
+  text-decoration: none;
+  color: white;
+  padding: 30px;
+  margin: 30px 10px;
+  border-radius: 4px;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn3:hover {
+  background-color: #ab7d21;
+}
