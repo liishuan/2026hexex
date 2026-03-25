@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>🐶 狗狗年齡換算計算機</title>
+    <style>
+      :root {
+        --primary-color: #f39c12;
+        --secondary-color: #d35400;
+        --bg-color: #f0f4f8;
+      }
+      body {
+        font-family: "Microsoft JhengHei", sans-serif;
+        background-color: var(--bg-color);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+        padding: 20px;
+      }
+      .container {
+        background: white;
+        padding: 2rem;
+        border-radius: 20px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 450px;
+      }
+      h2 {
+        text-align: center;
+        color: #333;
+        margin-top: 0;
+      }
+      .input-group {
+        margin-bottom: 1.2rem;
+      }
+      label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: bold;
+        color: #555;
+      }
+      select,
+      input {
+        width: 100%;
+        padding: 12px;
+        border: 2px solid #eee;
+        border-radius: 10px;
+        box-sizing: border-box;
+        font-size: 1rem;
+        transition: border-color 0.3s;
+      }
+      select:focus,
+      input:focus {
+        border-color: var(--primary-color);
+        outline: none;
+      }
+      button {
+        width: 100%;
+        padding: 15px;
+        background-color: var(--primary-color);
+        color: white;
+        border: none;
+        border-radius: 10px;
+        font-size: 1.2rem;
+        font-weight: bold;
+        cursor: pointer;
+        transition:
+          transform 0.2s,
+          background 0.3s;
+      }
+      button:hover {
+        background-color: var(--secondary-color);
+        transform: translateY(-2px);
+      }
+      #result {
+        margin-top: 25px;
+        padding: 20px;
+        border-radius: 15px;
+        background-color: #fffaf0;
+        border: 1px dashed var(--primary-color);
+        display: none;
+        text-align: center;
+      }
+      .dog-image {
+        width: 180px;
+        /* height: 180px; */
+        object-fit: cover;
+        /* border-radius: 50%; */
+        border: 5px solid white;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        margin-bottom: 15px;
+      }
+      .result-item {
+        margin: 8px 0;
+        font-size: 1.1rem;
+        color: #444;
+      }
+      .highlight {
+        font-weight: bold;
+        color: var(--secondary-color);
+        font-size: 1.4rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>🐾 狗狗年齡換算器</h2>
+
+      <div class="input-group">
+        <label for="size">1. 選擇狗狗體型</label>
+        <select id="size">
+          <option value="small">小型犬 (9kg 以下)</option>
+          <option value="medium">中型犬 (9-23kg)</option>
+          <option value="large">大型犬 (23-45kg)</option>
+          <option value="huge">巨型犬 (45kg 以上)</option>
+        </select>
+      </div>
+
+      <div class="input-group">
+        <label for="birthday">2. 輸入狗狗生日</label>
+        <input type="date" id="birthday" />
+      </div>
+
+      <button onclick="calculate()">立即計算</button>
+
+      <div id="result">
+        <img id="stageImg" class="dog-image" src="" alt="狗狗階段圖" />
+        <div class="result-item">
+          狗狗現在：<span id="dogAgeDisplay" class="highlight"></span>
+        </div>
+        <div class="result-item">
+          換算人類約：<span id="humanAgeDisplay" class="highlight"></span>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // 1-16 歲表格數據
+      const data = {
+        small: [15, 24, 28, 32, 36, 40, 44, 48, 52, 56, 60, 64, 68, 72, 76, 80],
+        medium: [
+          15, 24, 28, 32, 36, 42, 47, 51, 56, 60, 65, 69, 74, 78, 83, 87,
+        ],
+        large: [15, 24, 28, 32, 36, 45, 50, 55, 61, 66, 72, 77, 82, 88, 93, 99],
+        huge: [
+          12, 22, 31, 38, 45, 49, 56, 64, 71, 79, 86, 93, 100, 107, 114, 121,
+        ],
+      };
+
+      function calculate() {
+        const bdayInput = document.getElementById("birthday").value;
+        const size = document.getElementById("size").value;
+
+        if (!bdayInput) {
+          alert("請選擇日期喔！");
+          return;
+        }
+
+        const bday = new Date(bdayInput);
+        const today = new Date();
+        const diff = today - bday;
+
+        if (diff < 0) {
+          alert("生日不能超過今天呀！");
+          return;
+        }
+
+        const totalDays = diff / (1000 * 60 * 60 * 24);
+        const years = totalDays / 365.25;
+        const months = (totalDays % 365.25) / 30.44;
+
+        // 顯示文字
+        document.getElementById("dogAgeDisplay").innerText =
+          `${Math.floor(years)} 歲 ${Math.floor(months)} 個月`;
+
+        // 計算人類年齡
+        let humanAge = 0;
+        if (years < 1) {
+          const m = totalDays / 30.44;
+          if (m <= 1) humanAge = m * 0.5;
+          else if (m <= 3) humanAge = 0.5 + ((m - 1) / 2) * 3.5;
+          else if (m <= 6) humanAge = 4 + ((m - 3) / 3) * 5;
+          else humanAge = 9 + ((m - 6) / 6) * 6;
+        } else if (years <= 16) {
+          const idx = Math.floor(years) - 1;
+          const floorH = data[size][idx];
+          if (years === Math.floor(years)) {
+            humanAge = floorH;
+          } else {
+            const ceilH =
+              data[size][idx + 1] ||
+              data[size][idx] + (data[size][idx] - data[size][idx - 1]);
+            humanAge = floorH + (years - Math.floor(years)) * (ceilH - floorH);
+          }
+        } else {
+          // 17歲以上公式推導
+          const last = data[size][15];
+          const gap = last - data[size][14];
+          humanAge = last + (years - 16) * gap;
+        }
+
+        document.getElementById("humanAgeDisplay").innerText =
+          humanAge.toFixed(1) + " 歲";
+
+        // 圖片切換邏輯 (根據人類年齡)
+        const img = document.getElementById("stageImg");
+        if (humanAge < 6) {
+          img.src = "吸奶嘴.png"; // 吸奶嘴
+        } else if (humanAge < 16) {
+          img.src = "小童.png"; // 穿制服
+        } else if (humanAge < 28) {
+          img.src = "y2k.png"; // Y2K
+        } else if (humanAge < 55) {
+          img.src = "社畜狗.png"; // 西裝
+        } else if (humanAge < 70) {
+          img.src = "有錢阿北.png"; // Polo衫
+        } else {
+          img.src = "老狗.png"; // 拐杖
+        }
+
+        document.getElementById("result").style.display = "block";
+      }
+    </script>
+  </body>
+</html>
