@@ -150,6 +150,24 @@
         ],
       };
 
+      // --- 新增：網頁載入時自動填入上次存過的生日 ---
+      window.onload = function () {
+        const savedBirthday = localStorage.getItem("dogBirthday");
+        const savedSize = localStorage.getItem("dogSize");
+
+        if (savedBirthday) {
+          document.getElementById("birthday").value = savedBirthday;
+        }
+        if (savedSize) {
+          document.getElementById("size").value = savedSize;
+        }
+
+        // 如果有舊資料，自動執行一次計算
+        if (savedBirthday && savedSize) {
+          calculate();
+        }
+      };
+
       function calculate() {
         const bdayInput = document.getElementById("birthday").value;
         const size = document.getElementById("size").value;
@@ -158,6 +176,11 @@
           alert("請選擇日期喔！");
           return;
         }
+
+        // --- 新增：將輸入的值存入 localStorage ---
+        localStorage.setItem("dogBirthday", bdayInput);
+        localStorage.setItem("dogSize", size);
+        // ---------------------------------------
 
         const bday = new Date(bdayInput);
         const today = new Date();
